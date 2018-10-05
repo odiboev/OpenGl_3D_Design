@@ -2,7 +2,59 @@
 #include <GL/glut.h>
 #include <stdio.h>
 
+float counter = 0.0;
+
 void display(){
+    glClear(GL_COLOR_BUFFER_BIT);
+    //use modified color to overdraw color
+
+    glLoadIdentity();
+    glTranslatef(counter/500.0, -0.3, 0.0);
+    glRotatef(counter, 0.0, 1.0, 0.0);
+
+    counter += 0.1;
+
+    if(counter > 1700)
+        counter = -22f0.0;
+
+    glBegin(GL_TRIANGLES);
+
+            //triangle color
+            glColor3f(0.0, 1.0, 0.0);
+            glVertex3f(-0.5, -0.5, 0.0);
+
+            glColor3f(1.0, 0.0, 0.0);
+            glVertex3f(0.5, -0.5, 0.0);
+
+            glColor3f(0.0, 0.0, 1.0);
+            glVertex3f(0.0,  0.5, 0.0);
+
+    glEnd();
+
+    //2 triangle
+    glLoadIdentity();
+    //degree, vector (self-or something
+    glTranslatef(-0.5, -0.8, 0.0);
+    glRotatef(75, 0.0, 1.0, 0.0);
+
+
+    glBegin(GL_TRIANGLES);
+
+            //triangle color
+            glColor3f(1.0, 1.0, 1.0);
+            glVertex3f(-0.9, -0.1, 0.0);
+
+            glColor3f(0.0, 0.0, 1.0);
+            glVertex3f(0.1, -0.1, 0.0);
+
+            glColor3f(0.0, 1.0, 1.0);
+            glVertex3f(-0.5, 0.9, 0.0);
+
+    glEnd();
+
+
+    //double buffering (error)
+    glutSwapBuffers();
 }
 
 void reshape(int w, int h){
@@ -12,7 +64,8 @@ void reshape(int w, int h){
 }
 
 void initOpenGL(){
-    glClearColor(0.0, 0.0, 0.0, 1.0);
+    //background color
+    glClearColor(1.0, 1.0, 1.0, 1.0);
 }
 
 
@@ -22,8 +75,10 @@ int main(int argc, char **argv){
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA | GLUT_DEPTH);
     glutInitWindowSize(500, 500);
-    glutInitWindowPosition(100, 100);
+    glutInitWindowPosition(1100, 300);
     glutCreateWindow("openGL App");
+
+    initOpenGL();
 
     glutDisplayFunc(display);
     glutIdleFunc(display);
