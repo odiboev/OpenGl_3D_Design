@@ -8,26 +8,32 @@ void display(){
     glClear(GL_COLOR_BUFFER_BIT);
     //use modified color to overdraw color
 
+
     glLoadIdentity();
-    glTranslatef(counter/500.0, -0.3, 0.0);
+    /*
+    glTranslatef(counter/2000, -0.3, 0.0);
     glRotatef(counter, 0.0, 1.0, 0.0);
 
-    counter += 0.1;
+    counter += 1;
 
     if(counter > 1700)
-        counter = -22f0.0;
+        counter = 0.0;
+        */
 
-    glBegin(GL_TRIANGLES);
+    glBegin(GL_POLYGON);
 
             //triangle color
             glColor3f(0.0, 1.0, 0.0);
-            glVertex3f(-0.5, -0.5, 0.0);
+            glVertex3f(-0.5, -0.5, -1.0);
 
             glColor3f(1.0, 0.0, 0.0);
-            glVertex3f(0.5, -0.5, 0.0);
+            glVertex3f(-0.5, 0.5, -1.0);
 
             glColor3f(0.0, 0.0, 1.0);
-            glVertex3f(0.0,  0.5, 0.0);
+            glVertex3f(0.5,  0.5, -1.0);
+
+            glColor3f(0.0, 0.0, 1.0);
+            glVertex3f(0.5,  -0.5, -1.0);
 
     glEnd();
 
